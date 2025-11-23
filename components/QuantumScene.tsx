@@ -9,7 +9,24 @@ import { Float, Icosahedron, Box, Torus, Sphere, Stars, Environment, Cylinder } 
 import * as THREE from 'three';
 
 // Fix for missing JSX type definitions for Three.js elements
+// We augment both the global JSX namespace and the React module's JSX namespace
+// to ensure compatibility with different TypeScript/React configurations.
 declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      mesh: any;
+      group: any;
+      ambientLight: any;
+      pointLight: any;
+      spotLight: any;
+      meshStandardMaterial: any;
+      meshBasicMaterial: any;
+      tubeGeometry: any;
+    }
+  }
+}
+
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
       mesh: any;
